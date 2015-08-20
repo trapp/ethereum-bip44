@@ -1,0 +1,39 @@
+{
+    "name": "ethereum-bip44",
+    "version": "1.0.0",
+    "description": "bip 44 hierarchical deterministic address generation for ethereum",
+    "main": "es5/index.js",
+    "author": "Timon Rapp <timon@zaeda.net>",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/trapp/ethereum-bip44.git"
+    },
+    "bugs": {
+        "url": "https://github.com/trapp/ethereum-bip44/issues"
+    },
+    "homepage": "https://github.com/trapp/ethereum-bip44",
+    "license": "MPL-2.0",
+    "keywords": [
+        "ethereum",
+        "bip44",
+        "bip32",
+        "hd"
+    ],
+    "scripts": {
+        "prepublish": "./node_modules/.bin/babel src --out-dir es5 --stage 0"
+    },
+    "dependencies": {
+        "bitcore": "^0.12.15",
+        "ethereumjs-util": "1.3.6",
+        "elliptic": "^5.0.0",
+        "assert": "^1.3.0"
+    },
+    "devDependencies": {
+        "babel": "^5.8.14"
+    },
+    "files": [
+      "README.md",
+      "src/index.js",
+      "es5/index.js"
+    ]
+}
