@@ -1,5 +1,5 @@
 import { pubToAddress } from 'ethereumjs-util';
-import { HDPrivateKey, HDPublicKey } from 'bitcore';
+import { HDPrivateKey, HDPublicKey } from 'bitcore-lib';
 import assert from 'assert';
 var ec = require('elliptic').ec('secp256k1');
 
@@ -25,7 +25,9 @@ export default class EthereumBIP44 {
 
     static bip32PublicToEthereumPublic(pubKey) {
         let key = ec.keyFromPublic(pubKey).getPublic().toJSON();
-        return Buffer.concat([padTo32(new Buffer(key[0].toArray())), padTo32(new Buffer(key[1].toArray()))])
+        let ethPub = Buffer.concat([padTo32(new Buffer(key[0].toArray())), padTo32(new Buffer(key[1].toArray()))]);
+        console.log('ethpub', ethPub, 'pub', pubKey.toString('hex'));
+        return ethPub;
     }
 
     constructor(hdKey) {
