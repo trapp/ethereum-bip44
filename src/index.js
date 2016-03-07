@@ -26,7 +26,6 @@ export default class EthereumBIP44 {
     static bip32PublicToEthereumPublic(pubKey) {
         let key = ec.keyFromPublic(pubKey).getPublic().toJSON();
         let ethPub = Buffer.concat([padTo32(new Buffer(key[0].toArray())), padTo32(new Buffer(key[1].toArray()))]);
-        console.log('ethpub', ethPub, 'pub', pubKey.toString('hex'));
         return ethPub;
     }
 
