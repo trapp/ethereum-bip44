@@ -58,4 +58,10 @@ export default class EthereumBIP44 {
         );
         return `0x${address.toString('hex')}`;
     }
+
+    getPrivateKey(index) {
+      let path = this.parts.slice(this.key.depth);
+      let derived = this.key.derive('m/' + (path.length > 0 ? path.join('/') + '/' : "") + index);
+      return padTo32(derived.privateKey);
+    }
 }
