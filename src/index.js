@@ -62,6 +62,6 @@ export default class EthereumBIP44 {
     getPrivateKey(index) {
       let path = this.parts.slice(this.key.depth);
       let derived = this.key.derive('m/' + (path.length > 0 ? path.join('/') + '/' : "") + index);
-      return padTo32(derived.privateKey);
+      return padTo32(derived.privateKey.toBuffer());
     }
 }
