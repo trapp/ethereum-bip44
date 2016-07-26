@@ -4,11 +4,11 @@ import assert from 'assert';
 var ec = require('elliptic').ec('secp256k1');
 
 function padTo32(msg) {
-  if (msg.length === 31) {
+  while (msg.length < 32) {
     msg = Buffer.concat([new Buffer([0]), msg]);
   }
   if (msg.length !== 32) {
-    throw new Error('invalid key length');
+    throw new Error(`invalid key length: ${msg.length}`);
   }
   return msg;
 }
