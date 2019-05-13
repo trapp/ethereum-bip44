@@ -44,13 +44,13 @@ export default class EthereumBIP44 {
     }
 
     derive(path) {
-        return this.key.derive(path);
+        return this.key.deriveChild(path);
     }
 
     getAddress(index) {
 
         let path = this.parts.slice(this.key.depth);
-        let derived = this.key.derive('m/' + (path.length > 0 ? path.join('/') + '/' : "") + index);
+        let derived = this.key.deriveChild('m/' + (path.length > 0 ? path.join('/') + '/' : "") + index);
         let address = pubToAddress(
             EthereumBIP44.bip32PublicToEthereumPublic(
                 derived.publicKey.toBuffer()
@@ -61,7 +61,7 @@ export default class EthereumBIP44 {
 
     getPrivateKey(index) {
       let path = this.parts.slice(this.key.depth);
-      let derived = this.key.derive('m/' + (path.length > 0 ? path.join('/') + '/' : "") + index);
+      let derived = this.key.deriveChild('m/' + (path.length > 0 ? path.join('/') + '/' : "") + index);
       return padTo32(derived.privateKey.toBuffer());
     }
 }
